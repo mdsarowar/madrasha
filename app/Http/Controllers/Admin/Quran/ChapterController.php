@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Quran;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuranChapterRequest;
 use App\Models\QuranChapter;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class ChapterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuranChapterRequest $request)
     {
         $chapter=QuranChapter::saveData($request);
         return redirect()->route('chapter.index')->with('success','Chapter Create Succeffully');
@@ -73,7 +74,7 @@ class ChapterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuranChapterRequest $request, $id)
     {
         QuranChapter::updateData($request,$id);
         return redirect()->route('chapter.index')->with('success','Chapter Update Succeffully');

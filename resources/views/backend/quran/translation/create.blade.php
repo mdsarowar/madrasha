@@ -21,7 +21,6 @@
                                 <h4 class="float-start">Create Quran Translation</h4>
                                 <a href="{{ route('translation.index') }}" class="btn btn-success float-end">
                                     Manage
-                                    {{--                                    <i class="dripicons-arrow-thin-left"></i>--}}
                                 </a>
                             </div>
                             <div class="card-body">
@@ -33,54 +32,87 @@
                                         @endif
 
                                         <div class="form-group row mt-2">
-                                            <div class="col-md-6 ">
-                                                <label  class="form-label" id="xx">Quran Chapterx</label>
-                                                <select name="quran_chapter_id" id="chapterId" class=" form-control ">
-                                                    <option value="">select a verse</option>
+                                            <div class="col-md-4">
+                                                <label for="disabledTextInput" class="form-label">
+                                                    Quran Chapter
+                                                    <i class="dripicons-question" data-bs-toggle="tooltip" data-bs-title="Set Quran Chapter" data-bs-placement="right"></i>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <select name="quran_chapter_id" class="select1 form-control" data-toggle="select1"  data-placeholder="Choose ...">
+                                                        <option value="">select a Quran Chapter</option>
                                                     @foreach($chapters as $chapter)
-                                                        <option value="{{$chapter->id}}" {{isset($translation) && $translation->quran_chapter_id==$chapter->id? 'selected':''}}> {{$chapter->arabic_name}}</option>
+                                                        <option value="{{$chapter->id}}" {{$errors->any() ? ('selected') :(isset($translation) && $translation->quran_chapter_id==$chapter->id? 'selected':'')}}> {{$chapter->arabic_name}}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('quran_chapter_id')<span class="text-danger f-s-12">{{$errors->first('quran_chapter_id')}}</span> @enderror
                                             </div>
-                                            <div class="col-md-6 ">
-                                                <label  class="form-label">Quran Verse</label>
-                                                <select name="quran_verse_id" id="quranVerses" class="form-control " data-toggle="select2" data-placeholder="Choose ...">
-{{--                                                    @foreach($varses as $varse)--}}
-{{--                                                        <option value="{{$varse->id}}" {{isset($translation) && $translation->quran_verse_id==$varse->id? 'selected':''}}> {!! $varse->verse_arabic !!}</option>--}}
-{{--                                                    @endforeach--}}
+                                        </div>
+                                        <div class="form-group row mt-2">
+                                            <div class="col-md-4">
+                                                <label for="disabledTextInput" class="form-label">
+                                                    Quran Verse
+                                                    <i class="dripicons-question" data-bs-toggle="tooltip" data-bs-title="Set quran verse" data-bs-placement="right"></i>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <select name="quran_verse_id" class="select1 form-control" data-toggle="select1"  data-placeholder="Choose ...">
+                                                        <option value="">select a Quran Verse</option>
+                                                    @foreach($varses as $varse)
+                                                        <option value="{{$varse->id}}" {{$errors->any() ? ('selected') :(isset($translation) && $translation->quran_verse_id==$varse->id? 'selected':'')}}> {{$varse->quran_verse}}</option>
+                                                    @endforeach
                                                 </select>
+                                                @error('quran_verse_id')<span class="text-danger f-s-12">{{$errors->first('quran_verse_id')}}</span> @enderror
                                             </div>
+
 
                                         </div>
 
                                         <div class="form-group row mt-2">
-                                            <div class="col-md-6 ">
-                                                <label  class="form-label">Quran Translation Provider</label>
-                                                <select name="quran_translation_provider_id" class="select2 form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
-                                                    @foreach($transproviders as $trprovider)
-                                                        <option value="{{$trprovider->id}}" {{isset($translation) && $translation->quran_translation_provider_id==$trprovider->id? 'selected':''}}> {{$trprovider->brand_name}}</option>
+
+                                            <div class="col-md-4">
+                                                <label for="disabledTextInput" class="form-label">
+                                                    quran_translation_provider
+                                                    <i class="dripicons-question" data-bs-toggle="tooltip" data-bs-title="Set quran_translation_provider" data-bs-placement="right"></i>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <select name="quran_translation_provider_id" class="select1 form-control" data-toggle="select1" data-placeholder="Choose ...">
+                                                        <option value="">select a Quran Translation Provider</option>
+                                                    @foreach($transproviders as $quranTranslation)
+                                                        <option value="{{$quranTranslation->id}}" {{$errors->any() ? ('selected') :(isset($translation) && $translation->hostel_type?'selected':'')}}> {{$quranTranslation->brand_name}}</option>
                                                     @endforeach
                                                 </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="" class="form-label">Status</label>
-                                                <div class="col-md-9">
-                                                    <label class="sm-2" for=""><input type="radio" name="status" {{isset($translation) && $translation->status == 1? 'checked':''}} value="1"> Published</label>
-                                                    <label for=""><input type="radio" name="status" {{isset($translation) && $translation->status == 0? 'checked':''}} value="0"> Unpublished</label>
-                                                </div>
-                                            </div>
+                                                @error('quran_translation_provider_id')<span class="text-danger f-s-12">{{$errors->first('quran_translation_provider_id')}}</span> @enderror
 
+                                            </div>
                                         </div>
                                         <div class="form-group row mt-2">
-                                            <div class="col-md-6 ">
-                                                <label  class="form-label">Translated Verse</label>
-                                                <div id="snow-editor">
-                                                    <textarea name="translated_verse" id="editor1" class="form-control" style="height: 300px;">{!! isset($translation) ? $translation->translated_verse : '' !!}
-                                                    </textarea>
-                                                </div>
+                                            <div class="col-md-4">
+                                                <label for="" class="col-md-4">
+                                                    Status
+                                                </label>
+                                                    <i class="dripicons-question" data-bs-toggle="tooltip" data-bs-title="Set Your Status" data-bs-placement="right"></i>
+                                                <br/>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <label for="" class="mt-2"> <input type="radio" name="status" value="1" @if(isset($translation)) {{$translation->status == 1 ?'checked':''}} @endif>Published</label>
+                                                <label for=""class="mt-2"> <input type="radio"  name="status" value="0" @if(isset($translation)) {{$translation->status == 0 ?'checked':''}} @endif>UnPublished</label>
+                                                <br> @error('status')<span class="text-danger f-s-12">{{$errors->first('status')}}</span> @enderror
                                             </div>
                                         </div>
-
+                                        <div class="form-group row mt-2">
+                                            <div class="col-md-4">
+                                                <label for="" class="form-label">
+                                                    Translated Verse
+                                                </label>
+                                                    <i class="dripicons-question" data-bs-toggle="tooltip" data-bs-title="Set Translated Verse" data-bs-placement="right"></i>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <textarea name="translated_verse" id="editor" cols="20" rows="5" class="form-control" value="">{!!$errors->any() ? (old('translated_verse')) :(isset($translation)? $translation->translated_verse:'')!!}</textarea>
+                                                @error('translated_verse')<span class="text-danger f-s-12">{{$errors->first('translated_verse')}}</span> @enderror
+                                            </div>
+                                        </div>
                                         <div class="mt-5 float-end">
                                             <input type="submit" class="btn btn-success" data-provide="typeahead" id="" value="{{ isset($translation) ? 'Update ' : 'Create ' }} Translation">
                                         </div>

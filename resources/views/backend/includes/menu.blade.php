@@ -107,6 +107,111 @@
                 </div>
             </li>
 
+            <li class="side-nav-item {{ request()->is('admin/library_book_category*') ? 'menuitem-active' : '' }} {{ request()->is('admin/library_book*') ? 'menuitem-active' : '' }} {{ request()->is('admin/library_member*') ? 'menuitem-active' : '' }} {{ request()->is('admin/library_ebook*') ? 'menuitem-active' : '' }}{{ request()->is('admin/library_ebook_file*') ? 'menuitem-active' : '' }} ">
+                <a data-bs-toggle="collapse" href="#Library" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                    <i class="mdi-blur-off"></i>
+                    <span> Library </span>
+                </a>
+                <div class="collapse" id="Library">
+                    <ul class="side-nav-second-level">
+                        <li class="{{ request()->is('admin/library_book_category*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('library_book_category.index') }}" class="{{ request()->is('admin/library_book_category') || request()->is('admin/library_book_category/*') ? 'active' : '' }}">Book Category</a>
+                        </li>
+                        <li class="{{ request()->is('admin/library_book*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('library_book.index') }}" class="{{ request()->is('admin/library_book') || request()->is('admin/library_book/*') ? 'active' : '' }}">Book</a>
+                        </li>
+                        <li class="{{ request()->is('admin/library_member*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('library_member.index') }}" class="{{ request()->is('admin/library_member') || request()->is('admin/library_member/*') ? 'active' : '' }}">Member</a>
+                        </li>
+                        <li class="{{ request()->is('admin/library_ebook*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('library_ebook.index') }}" class="{{ request()->is('admin/library_ebook') || request()->is('admin/library_ebook/*') ? 'active' : '' }}">Ebook</a>
+                        </li>
+                        <li class="{{ request()->is('admin/library_ebook_file*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('library_ebook_file.index') }}" class="{{ request()->is('admin/library_ebook_file') || request()->is('admin/library_ebook_file/*') ? 'active' : '' }}">Ebook File</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item {{ request()->is('admin/hostel*') ? 'menuitem-active' : '' }} {{ request()->is('admin/hostel_member*') ? 'menuitem-active' : '' }}  ">
+                <a data-bs-toggle="collapse" href="#Hostel" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                    <i class="mdi-blur-off"></i>
+                    <span> Hostel </span>
+                </a>
+                <div class="collapse" id="Hostel">
+                    <ul class="side-nav-second-level">
+                        <li class="{{ request()->is('admin/hostel*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('hostel.index') }}" class="{{ request()->is('admin/hostel') || request()->is('admin/hostel/*') ? 'active' : '' }}">Hostel</a>
+                        </li>
+                        <li class="{{ request()->is('admin/hostel_member*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('hostel_member.index') }}" class="{{ request()->is('admin/hostel_member') || request()->is('admin/hostel_member/*') ? 'active' : '' }}">Hostel Member</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item {{ request()->is('admin/exam*') ? 'menuitem-active' : '' }} {{ request()->is('admin/exam_mark_distribution_type*') ? 'menuitem-active' : '' }} {{ request()->is('admin/exam_attendance*') ? 'menuitem-active' : '' }} {{ request()->is('admin/exam_grade*') ? 'menuitem-active' : '' }}{{ request()->is('admin/exam_schedule*') ? 'menuitem-active' : '' }}{{ request()->is('admin/question*') ? 'menuitem-active' : '' }} {{ request()->is('admin/question_difficulty_level*') ? 'menuitem-active' : '' }} ">
+                <a data-bs-toggle="collapse" href="#ExamManagement" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                    <i class="mdi-blur-off"></i>
+                    <span> Exam Management </span>
+                </a>
+                <div class="collapse" id="ExamManagement">
+                    <ul class="side-nav-second-level">
+                        <li class="{{ request()->is('admin/exam*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('exam.index') }}" class="{{ request()->is('admin/exam') || request()->is('admin/exam/*') ? 'active' : '' }}">Exam</a>
+                        </li>
+                        <li class="{{ request()->is('admin/exam_mark_distribution_type*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('exam_mark_distribution_type.index') }}" class="{{ request()->is('admin/exam_mark_distribution_type') || request()->is('admin/exam_mark_distribution_type/*') ? 'active' : '' }}">Exam_mark_distribution_type</a>
+                        </li>
+                        <li class="{{ request()->is('admin/exam_attendance*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('exam_attendance.index') }}" class="{{ request()->is('admin/exam_attendance') || request()->is('admin/exam_attendance/*') ? 'active' : '' }}">Exam Attendance</a>
+                        </li>
+                        <li class="{{ request()->is('admin/exam_grade*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('exam_grade.index') }}" class="{{ request()->is('admin/exam_grade') || request()->is('admin/exam_grade/*') ? 'active' : '' }}">Exam Grade</a>
+                        </li>
+                        <li class="{{ request()->is('admin/exam_schedule*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('exam_schedule.index') }}" class="{{ request()->is('admin/exam_schedule') || request()->is('admin/exam_schedule/*') ? 'active' : '' }}">Exam Schedule</a>
+                        </li>
+                        <li class="{{ request()->is('admin/question*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('question.index') }}" class="{{ request()->is('admin/question') || request()->is('admin/question/*') ? 'active' : '' }}">Question</a>
+                        </li>
+                        <li class="{{ request()->is('admin/question_difficulty_level*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('question_difficulty_level.index') }}" class="{{ request()->is('admin/question_difficulty_level') || request()->is('admin/question_difficulty_level/*') ? 'active' : '' }}">Question Difficulty Level</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item {{ request()->is('admin/academic_stuff*') ? 'menuitem-active' : '' }} {{ request()->is('admin/user_admin*') ? 'menuitem-active' : '' }}{{ request()->is('admin/designation*') ? 'menuitem-active' : '' }}{{ request()->is('admin/user_management_student*') ? 'menuitem-active' : '' }}{{ request()->is('admin/user_management_teacher*') ? 'menuitem-active' : '' }} {{ request()->is('admin/user_submitted_certificate*') ? 'menuitem-active' : '' }}  ">
+                <a data-bs-toggle="collapse" href="#user_management" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                    <i class="mdi-blur-off"></i>
+                    <span> User Management </span>
+                </a>
+                <div class="collapse" id="user_management">
+                    <ul class="side-nav-second-level">
+                        <li class="{{ request()->is('admin/academic_stuff*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('academic_stuff.index') }}" class="{{ request()->is('admin/academic_stuff') || request()->is('admin/academic_stuff/*') ? 'active' : '' }}">Academic Stuff</a>
+                        </li>
+                        <li class="{{ request()->is('admin/user_admin*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('user_admin.index') }}" class="{{ request()->is('admin/user_admin') || request()->is('admin/user_admin/*') ? 'active' : '' }}">Admin</a>
+                        </li>
+                        <li class="{{ request()->is('admin/designation*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('designation.index') }}" class="{{ request()->is('admin/designation') || request()->is('admin/designation/*') ? 'active' : '' }}">Designation</a>
+                        </li>
+                        <li class="{{ request()->is('admin/user_management_student*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('user_management_student.index') }}" class="{{ request()->is('admin/user_management_student') || request()->is('admin/user_management_student/*') ? 'active' : '' }}">Students</a>
+                        </li>
+                        <li class="{{ request()->is('admin/user_management_teacher*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('user_management_teacher.index') }}" class="{{ request()->is('admin/user_management_teacher') || request()->is('admin/user_management_teacher/*') ? 'active' : '' }}">Teachers</a>
+                        </li>
+                        <li class="{{ request()->is('admin/user_submitted_certificate*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('user_submitted_certificate.index') }}" class="{{ request()->is('admin/user_submitted_certificate') || request()->is('admin/user_submitted_certificate/*') ? 'active' : '' }}">Submitted Certificates</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <li class="side-nav-item {{ request()->is('setting') ? 'menuitem-active' : '' }}">
                 <a href="{{ route('setting.create') }}" class="side-nav-link">
                     <i class="dripicons-gear"></i>

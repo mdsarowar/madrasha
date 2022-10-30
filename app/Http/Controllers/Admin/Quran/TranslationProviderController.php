@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Quran;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuranTranslationProviderRequest;
 use App\Models\QuranTranslationProvider;
 use Illuminate\Http\Request;
 
@@ -36,9 +37,10 @@ class TranslationProviderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuranTranslationProviderRequest $request)
     {
-        $varse=QuranTranslationProvider::saveData($request);
+        return 'hello world';
+        QuranTranslationProvider::saveData($request);
         return redirect()->route('translation_provider.index')->with('success','Translation Provider Create successfully');
     }
 
@@ -74,7 +76,7 @@ class TranslationProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuranTranslationProviderRequest $request, $id)
     {
         QuranTranslationProvider::updateData($request,$id);
         return redirect()->route('translation_provider.index')->with('success','Translation Provider Update successfully');
