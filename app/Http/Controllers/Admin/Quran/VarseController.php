@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Quran;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuranVerseRequest;
 use App\Models\QuranChapter;
 use App\Models\QuranVerse;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class VarseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuranVerseRequest $request)
     {
         QuranVerse::saveData($request);
         return redirect()->route('varse.index')->with('success','varse Create successfully');
@@ -77,7 +78,7 @@ class VarseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuranVerseRequest $request, $id)
     {
         QuranVerse::updateData($request,$id);
         return redirect()->route('varse.index')->with('success','varse Update successfully');

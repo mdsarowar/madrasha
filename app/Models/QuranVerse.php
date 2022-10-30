@@ -40,7 +40,7 @@ class QuranVerse extends Model
         self::$varse->verse_arabic                          =$request->verse_arabic;
         self::$varse->verse_bangla                          =$request->verse_bangla;
         self::$varse->verse_english                         =$request->verse_english;
-        self::$varse->audio                                 =saveImage($request->file('audio'),'backend/admin/quran/audio/',' ','quranAudio');
+        self::$varse->audio                                 =saveImage($request->file('audio'),'backend/admin/quran/audio/',isset($varse)? $varse->audio:'','quranAudio');
         self::$varse->status                                =$request->status;
         $slugtyp=ltrim($request->verse_arabic,'<p>');
         $slugg=rtrim($slugtyp, '</p>');

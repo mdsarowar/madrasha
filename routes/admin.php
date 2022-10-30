@@ -16,7 +16,27 @@ use App\Http\Controllers\Admin\Quran\VarseController;
 use App\Http\Controllers\Admin\Quran\ChapterController;
 use App\Http\Controllers\Admin\Quran\TranslationController;
 use App\Http\Controllers\Admin\Quran\TranslationProviderController;
-
+use App\Http\Controllers\Admin\Library\LibraryBookCategoryController;
+use App\Http\Controllers\Admin\Library\LibraryBookController;
+use App\Http\Controllers\Admin\Library\LibraryMemberController;
+use App\Http\Controllers\Admin\Library\LibraryEbookController;
+use App\Http\Controllers\Admin\Library\LibraryEbookFileController;
+use App\Http\Controllers\Admin\Hostel\HostelController;
+use App\Http\Controllers\Admin\Hostel\HostelMemberController;
+use App\Http\Controllers\Admin\ExamManagement\QuestionController;
+use App\Http\Controllers\Admin\ExamManagement\QuestionDificultyLevelController;
+use App\Http\Controllers\Admin\ExamManagement\ExamAttendanceController;
+use App\Http\Controllers\Admin\ExamManagement\ExamScheduleController;
+use App\Http\Controllers\Admin\ExamManagement\ExamMarkDistributionTypeController;
+use App\Http\Controllers\Admin\ExamManagement\ExamController;
+use App\Http\Controllers\Admin\ExamManagement\ExamGradeController;
+use App\Http\Controllers\Admin\Academic;
+use App\Http\Controllers\Admin\UserManagement\AcademicStuffController;
+use App\Http\Controllers\Admin\UserManagement\AdminController;
+use App\Http\Controllers\Admin\UserManagement\UserDesignationController;
+use App\Http\Controllers\Admin\UserManagement\UserManagementStudentController;
+use App\Http\Controllers\Admin\UserManagement\UserManagementTeacherController;
+use App\Http\Controllers\Admin\UserManagement\UserManagementSubmittedCertificateController;
 
 Route::middleware([
     'auth:sanctum',
@@ -63,6 +83,49 @@ Route::middleware([
         Route::resource('translation_provider',TranslationProviderController::class);
 
         Route::post('/get-verse-data-by-chapter-id', [TranslationController::class, 'getVerse']);
+
+
+//Library module
+        //Library Book Category
+        Route::resource('library_book_category',LibraryBookCategoryController::class);
+        //Library Book
+        Route::resource('library_book',LibraryBookController::class);
+        //Library Member
+        Route::resource('library_member',LibraryMemberController::class);
+        //Library Ebook
+        Route::resource('library_ebook',LibraryEbookController::class);
+        //Library Ebook File
+        Route::resource('library_ebook_file',LibraryEbookFileController::class);
+
+//Hostel module
+        //hostel
+        Route::resource('hostel',HostelController::class);
+        //hostel member
+        Route::resource('hostel_member',HostelMemberController::class);
+//Exam Management module
+        //Exam
+        Route::resource('exam',ExamController::class);
+        //Exam Mark Distribution Type
+        Route::resource('exam_mark_distribution_type',ExamMarkDistributionTypeController::class);
+        //Exam Attendance
+        Route::resource('exam_attendance',ExamAttendanceController::class);
+        //Exam Grade
+        Route::resource('exam_grade',ExamGradeController::class);
+        //Exam Schedule
+        Route::resource('exam_schedule',ExamScheduleController::class);
+        //Question
+        Route::resource('question',QuestionController::class);
+        //Question Difficulty
+        Route::resource('question_difficulty_level',QuestionDificultyLevelController::class);
+
+//  User management
+        Route::resource('academic_stuff',AcademicStuffController::class);
+        Route::resource('user_admin',AdminController::class);
+        Route::resource('designation',UserDesignationController::class);
+        Route::resource('user_management_student',UserManagementStudentController::class);
+        Route::resource('user_management_teacher',UserManagementTeacherController::class);
+        Route::resource('user_submitted_certificate',UserManagementSubmittedCertificateController::class);
+
     });
 });
 

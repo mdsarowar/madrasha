@@ -33,34 +33,55 @@
                                         @endif
 
                                         <div class="form-group row mt-2">
-                                            <div class="col-md-6  ">
+                                            <div class="col-md-4 ">
                                                 <label for="disabledTextInput" class="form-label">Brand Name </label>
-                                                <input type="text"  class="form-control" name="brand_name" placeholder="" value="{{ isset($transprov)? $transprov->brand_name :''}}">
+                                                <i class="dripicons-question" data-bs-toggle="tooltip" data-bs-title="Set Brand Name" data-bs-placement="right"></i>
                                             </div>
-                                            <div class="col-md-6 ">
-                                                <label  class="form-label">Translated By </label>
-                                                <input type="text"  class="form-control" name="translated_by" placeholder="" value="{{ isset($transprov)? $transprov->translated_by :''}}">
+                                            <div class="col-md-8">
+                                                <input type="text"  class="form-control" name="brand_name" placeholder="" value="{{$errors->any() ? (old('brand_name')): (isset($transprov)? $transprov->brand_name :'')}}">
+                                                @error('brand_name')<span class="text-danger f-s-12">{{$errors->first('brand_name')}}</span> @enderror
                                             </div>
-
                                         </div>
                                         <div class="form-group row mt-2">
-                                            <div class="col-md-6 ">
-                                                <label class="form-label">language</label>
-                                                <select name="language" class="form-control select2" data-toggle="select2">>
-                                                    <option value="bangla" {{isset($transprov) && $transprov->language=='bangla'? 'selected':''}}>Bangla</option>
-                                                    <option value="english" {{isset($transprov) && $transprov->language=='english'? 'selected':''}}>English</option>
-                                                    <option value="arabic" {{isset($transprov) && $transprov->language=='arabic'? 'selected':''}}>Erabic</option>
-                                                </select>
+                                            <div class="col-md-4 ">
+                                                <label  class="form-label">Translated By </label>
+                                                <i class="dripicons-question" data-bs-toggle="tooltip" data-bs-title="Set Translated By" data-bs-placement="right"></i>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="" class="form-label">Status</label>
-                                                <div class="col-md-9">
-                                                    <label class="sm-2" for=""><input type="radio" name="status" {{isset($transprov) && $transprov->status == 1? 'checked':''}} value="1"> Published</label>
-                                                    <label for=""><input type="radio" name="status" {{isset($transprov) && $transprov->status == 0? 'checked':''}} value="0"> Unpublished</label>
-                                                </div>
+                                            <div class="col-md-8">
+                                                <input type="text"  class="form-control" name="translated_by" placeholder="" value="{{$errors->any() ? (old('translated_by')) :(isset($transprov)? $transprov->translated_by :'')}}">
+                                                @error('translated_by')<span class="text-danger f-s-12">{{$errors->first('translated_by')}}</span> @enderror
                                             </div>
-
                                         </div>
+                                        <div class="form-group row mt-2">
+                                            <div class="col-md-4 ">
+                                                <label class="form-label">language</label>
+                                                <i class="dripicons-question" data-bs-toggle="tooltip" data-bs-title="Set language" data-bs-placement="right"></i>
+                                            </div>
+                                            <div class="col-md-8 ">
+                                                <select name="language" class="form-control select2" data-toggle="select2">
+                                                    <option value="">Select Language</option>
+                                                    <option value="bangla" {{$errors->any() ? (old('language')) :(isset($transprov) && $transprov->language=='bangla'? 'selected':'')}}>Bangla</option>
+                                                    <option value="english" {{$errors->any() ? (old('language')) :(isset($transprov) && $transprov->language=='english'? 'selected':'')}}>English</option>
+                                                    <option value="arabic" {{$errors->any() ? (old('language')) :(isset($transprov) && $transprov->language=='arabic'? 'selected':'')}}>Erabic</option>
+                                                </select>
+                                                @error('language')<span class="text-danger f-s-12">{{$errors->first('language')}}</span> @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mt-2">
+                                            <div class="col-md-4 ">
+                                                <label for="" class="col-md-4">
+                                                    Status
+                                                    <i class="dripicons-question" data-bs-toggle="tooltip" data-bs-title="Set Your Status" data-bs-placement="right"></i>
+                                                </label>
+                                                <br/>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <label for="" class="mt-2"> <input type="radio" name="status" value="1" @if(isset($transprov)) {{$transprov->status == 1 ?'checked':''}} @endif>Published</label>
+                                                <label for=""class="mt-2"> <input type="radio"  name="status" value="0" @if(isset($transprov)) {{$transprov->status == 0 ?'checked':''}} @endif>UnPublished</label>
+                                                <br> @error('language')<span class="text-danger f-s-12">{{$errors->first('language')}}</span> @enderror
+                                            </div>
+                                        </div>
+
                                         <div class="mt-5 float-end">
                                             <input type="submit" class="btn btn-success" data-provide="typeahead" id="" value="{{ isset($transprov) ? 'Update ' : 'Create ' }} Provider">
                                         </div>

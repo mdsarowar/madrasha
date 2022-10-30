@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Quran;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuranTranslationRequest;
 use App\Models\QuranChapter;
 use App\Models\QuranTranslation;
 use App\Models\QuranTranslationProvider;
@@ -25,33 +26,33 @@ class TranslationController extends Controller
 //        $content=$response->getBody();
 //        return $content;
 
-        $client = new Client();
-        $apiUrl = 'https://api.quran.com/api/v4/quran/verses/indopak';
-        $apiContent = $client->request('GET', $apiUrl);
-        $jsonContent = $apiContent->getBody();
-        $content = json_decode($jsonContent);
-        $parentArray = [];
-        foreach ($content->verses as $vers)
-        {
-            $tempArray = [];
-            $explodeVerseKey = explode(':', $vers->verse_key);
-            if ($explodeVerseKey[0] == 12)
-            {
-                $tempArray = [
-                    'chapter_number'    => $explodeVerseKey[0],
-                    'verse_number'    => $explodeVerseKey[1],
-                    'verse'             => $vers->text_indopak,
-                ];
-                array_push($parentArray, $tempArray);
-            }
-        }
-        return $parentArray;
+//        $client = new Client();
+//        $apiUrl = 'https://api.quran.com/api/v4/quran/verses/indopak';
+//        $apiContent = $client->request('GET', $apiUrl);
+//        $jsonContent = $apiContent->getBody();
+//        $content = json_decode($jsonContent);
+//        $parentArray = [];
+//        foreach ($content->verses as $vers)
+//        {
+//            $tempArray = [];
+//            $explodeVerseKey = explode(':', $vers->verse_key);
+//            if ($explodeVerseKey[0] == 12)
+//            {
+//                $tempArray = [
+//                    'chapter_number'    => $explodeVerseKey[0],
+//                    'verse_number'    => $explodeVerseKey[1],
+//                    'verse'             => $vers->text_indopak,
+//                ];
+//                array_push($parentArray, $tempArray);
+//            }
+//        }
+//        return $parentArray;
 
 
 
-//        return view('backend.quran.translation.manage',[
-//            'translations'=>QuranTranslation::all(),
-//        ]);
+        return view('backend.quran.translation.manage',[
+            'translations'=>QuranTranslation::all(),
+        ]);
     }
 
     /**
@@ -74,7 +75,7 @@ class TranslationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuranTranslationRequest $request)
     {
         $translation=QuranTranslation::saveData($request);
         return redirect()->route('translation.index')->with('success','Translation Create successfully');
@@ -114,7 +115,7 @@ class TranslationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuranTranslationRequest $request, $id)
     {
         QuranTranslation::updateData($request,$id);
         return redirect()->route('translation.index')->with('success','Translation Update successfully');

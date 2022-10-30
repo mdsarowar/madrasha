@@ -60,7 +60,7 @@ protected static $translation;
         return $this->belongsTo(QuranVerse::class);
     }
 
-    public function quranTranslationProvider()
+    public function quranTranslationProviders()
     {
         return $this->belongsTo(QuranTranslationProvider::class);
     }

@@ -25,8 +25,8 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>class_name</th>
-                                <th>class_numeric</th>
+                                <th>Class Name</th>
+                                <th>Class Numeric</th>
                                 <th>class_note</th>
                                 <th>class_lavel</th>
                                 <th>Status</th>
